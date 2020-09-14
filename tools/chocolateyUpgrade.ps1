@@ -35,11 +35,10 @@ write-host "Installing emsdk latest" -ForegroundColor Blue
 # Make the latest SDK "active" for the current user. (writes ~/.emscripten file)
 write-host "Activating emsdk latest" -ForegroundColor Blue
 write-host "emsdk sometimes fails to add the environment variables! Ignore the failure messages about environment variables or import Python Windows extensions. Chocolatey will handle it. :)" -ForegroundColor Yellow
-.\emsdk.bat activate latest --global
+.\emsdk.bat activate latest --global 2>&1
 
 # Activate PATH and other environment variables in the current terminal
-.\emsdk_env.bat
-$emsdk_env_output=(.\emsdk_env.ps1 2>&1)
+$emsdk_env_output=(.\emsdk_env.bat 2>&1)
 
 # Make the environment variables premenant
 & "$toolsDir\add_envs.ps1"
