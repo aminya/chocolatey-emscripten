@@ -15,7 +15,7 @@ write-host "Adding the EMSDK, EMSDK_NODE, JAVA_HOME, EMSDK_PYTHON, and EM_CACHE 
 
 # $emsdk_env_output=(.\emsdk_env.ps1 2>&1)
 
-$envs_names_to_add=($emsdk_env_output | Select-String "^(.*) = (.*)$" -AllMatches | %{$_.matches} | %{$_.groups})
+$envs_names_to_add=($emsdk_env_output | Select-String "(.*) = (.*)" -AllMatches | %{$_.matches} | %{$_.groups})
 
 # loop over each group (e.g if length == 18 -> 1,2; 4,5; ... ;16,17)
 For ($i=1; $i -le ($envs_names_to_add.length-2); $i = $i+3) {
