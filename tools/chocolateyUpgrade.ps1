@@ -29,6 +29,9 @@ git pull
 write-host "Installing emsdk latest" -ForegroundColor Blue
 .\emsdk install latest --global
 
+# Remove environment variables
+& "$toolsDir\remove_envs.ps1"
+
 # Make the latest SDK "active" for the current user. (writes ~/.emscripten file)
 write-host "Activating emsdk latest" -ForegroundColor Blue
 write-host "emsdk sometimes fails to add the environment variables! Ignore the failure messages about environment variables or import Python Windows extensions. Chocolatey will handle it. :)" -ForegroundColor Yellow

@@ -4,6 +4,11 @@ $ErrorActionPreference = 'Stop';
 
 $installDir=$env:LOCALAPPDATA
 
+$toolsDir="$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
+if (!$toolsDir) {
+    $toolsDir = "$env:ChocolateyInstall\lib\emscripten"
+}
+
 write-host "Uninstalling emscripten will remove $installDir\emsdk. Are you sure you want to proceed?" -ForegroundColor Yellow
 $reply = Read-Host -Prompt "[y/n]"
 if ( $reply -match "[yY]" ) {
@@ -12,10 +17,5 @@ if ( $reply -match "[yY]" ) {
     if (Test-Path "$installDir\emsdk") { rm -Recurse -Force "$installDir\emsdk" }
 
     # Remove environment variables
-    write-host "Removing environment variables" -ForegroundColor Blue
-    Uninstall-ChocolateyEnvironmentVariable "EMSDK" -VariableType User
-    Uninstall-ChocolateyEnvironmentVariable "EMSDK_NODE" -VariableType User
-    Uninstall-ChocolateyEnvironmentVariable "JAVA_HOME" -VariableType User
-    Uninstall-ChocolateyEnvironmentVariable "EMSDK_PYTHON" -VariableType User
-    Uninstall-ChocolateyEnvironmentVariable "EM_CACHE" -VariableType User
+    & "$toolsDir\remove_envs.ps1"
 }
