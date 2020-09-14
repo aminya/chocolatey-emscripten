@@ -11,6 +11,9 @@ if (!$toolsDir) {
 
 write-host "Uninstalling emscripten will remove $installDir\emsdk. Are you sure you want to proceed?" -ForegroundColor Yellow
 $reply = Read-Host -Prompt "[y/n]"
+if(!$reply) {
+    $reply = "y"
+}
 if ( $reply -match "[yY]" ) {
     # Remove the repository
     write-host "Removing $installDir\emsdk" -ForegroundColor Blue
