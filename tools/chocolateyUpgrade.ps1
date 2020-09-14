@@ -20,14 +20,14 @@ write-host "The current working directory is changed to $installDir\emsdk" -Fore
 
 # Update the tags for emsdk
 git pull
-.\emsdk.ps1 update-tags
+.\emsdk.bat update-tags
 
 # Fetch the latest registry of available tools.
-.\emsdk update
+.\emsdk.bat update
 
 # Download and install the latest SDK tools.
 write-host "Installing emsdk latest" -ForegroundColor Blue
-.\emsdk install latest --global
+.\emsdk.bat install latest --global
 
 # Remove environment variables
 & "$toolsDir\remove_envs.ps1"
@@ -35,9 +35,10 @@ write-host "Installing emsdk latest" -ForegroundColor Blue
 # Make the latest SDK "active" for the current user. (writes ~/.emscripten file)
 write-host "Activating emsdk latest" -ForegroundColor Blue
 write-host "emsdk sometimes fails to add the environment variables! Ignore the failure messages about environment variables or import Python Windows extensions. Chocolatey will handle it. :)" -ForegroundColor Yellow
-.\emsdk activate latest --global
+.\emsdk.bat activate latest --global
 
 # Activate PATH and other environment variables in the current terminal
+.\emsdk_env.bat
 $emsdk_env_output=(.\emsdk_env.ps1 2>&1)
 
 # Make the environment variables premenant

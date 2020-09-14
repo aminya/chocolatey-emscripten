@@ -50,19 +50,19 @@ write-host "The current working directory is changed to $installDir\emsdk" -Fore
 
 # Update the tags for emsdk
 git pull
-.\emsdk.ps1 update-tags
+.\emsdk.bat update-tags
 
 # Download and install the SDK tools.
 write-host "Installing emsdk $version" -ForegroundColor Blue
-.\emsdk.ps1 install $version --global
+.\emsdk.bat install $version --global
 
 # Make the $version SDK "active" for the current user. (writes ~/.emscripten file)
 write-host "Activating emsdk $version" -ForegroundColor Blue
 write-host "emsdk sometimes fails to add the environment variables! Ignore the failure messages about environment variables or import Python Windows extensions. Chocolatey will handle it. :)" -ForegroundColor Yellow
-.\emsdk.ps1 activate $version --global
+.\emsdk.bat activate $version --global
 
 # Activate PATH and other environment variables in the current terminal
-# .\emsdk_env.ps1
+.\emsdk_env.bat
 $emsdk_env_output=(.\emsdk_env.ps1 2>&1)
 
 # Make the environment variables premenant
