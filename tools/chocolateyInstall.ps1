@@ -20,16 +20,10 @@ if ($Env:ChocolateyForce) {
         Write-Host "Version $version is already installed." -ForegroundColor Green
         return
     } elseif (Test-Path "$installDir\emsdk") {
-        write-host "emscripten is already installed at $installDir\emsdk. Do you want to upgrade to the latest sdk?" -ForegroundColor Yellow
-        $reply = Read-Host -Prompt "[y/n]"
-        if(!$reply) {
-            $reply = "y"
-        }
-        if ( $reply -match "[yY]" ) {
-            # call the upgrade
-            & "$toolsDir\chocolateyUpgrade.ps1"
-            return
-        }
+        write-host "emscripten is already installed at $installDir\emsdk. The sdk will be upgraded to $version." -ForegroundColor Yellow
+        # call the upgrade
+        & "$toolsDir\chocolateyUpgrade.ps1"
+        return
     }
 }
 
