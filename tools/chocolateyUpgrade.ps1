@@ -2,7 +2,10 @@
 
 $version=$env:chocolateyPackageVersion
 if (!$version) {
-    $version='latest'
+    $version=$env:emsdkVersion # to allow running without choco
+    if (!$version) {
+        $version='latest'
+    }
 }
 
 $installDir=$env:LOCALAPPDATA
