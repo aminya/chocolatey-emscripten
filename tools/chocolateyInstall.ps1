@@ -1,12 +1,21 @@
 # Based on the official installation guide: https://emscripten.org/docs/getting_started/downloads.html#installation-instructions
 
-$version=$env:chocolateyPackageVersion
-if (!$version) {
-    $version=$env:emsdkVersion # to allow running without choco
-    if (!$version) {
-        $version='latest'
-    }
+## Handle version
+if ($env:chocolateyPackageVersion) {
+    # in choco
+    $version=$env:chocolateyPackageVersion
 }
+# to allow running without choco
+elseif ($env:emsdkVersion) {
+    $version=$env:emsdkVersion
+}
+elseif ($emsdkVersion) {
+    $version=$emsdkVersion
+}
+else {
+    $version='latest'
+}
+
 
 $installDir=$env:LOCALAPPDATA
 
