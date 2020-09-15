@@ -19,6 +19,9 @@ $envs_names_to_add=($emsdk_env_output | Select-String "(.*) = (.*)" -AllMatches 
 
 # loop over each group (e.g if length == 18 -> 1,2; 4,5; ... ;16,17)
 For ($i=1; $i -le ($envs_names_to_add.length-2); $i = $i+3) {
-    # [Environment]::SetEnvironmentVariable($envs_names_to_add[$i], $envs_names_to_add[$i+1], "User")
-    Install-ChocolateyEnvironmentVariable $envs_names_to_add[$i] $envs_names_to_add[$i+1] -VariableType User
+    try {
+        Install-ChocolateyEnvironmentVariable $envs_names_to_add[$i] $envs_names_to_add[$i+1] -VariableType User
+    } catch {
+        [Environment]::SetEnvironmentVariable($envs_names_to_add[$i], $envs_names_to_add[$i+1], "User")
+    }
 }
