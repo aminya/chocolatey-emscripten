@@ -21,5 +21,9 @@ write-host "Putting emsdk, emscripten, emsdk_node, emsdk_java, and emsdk_python 
 $paths_to_add=($emsdk_env_output | Select-String "^(?:PATH \+\= )(.*)$" -AllMatches | %{$_.matches} | %{$_.Value}) -replace "PATH \+\= ", ""
 
 Foreach ($path_to_add in $paths_to_add) {
-    Install-ChocolateyPath -PathToInstall $path_to_add -PathType User
+    try {
+        Install-ChocolateyPath -PathToInstall $path_to_add -PathType User
+    } catch {
+        [Environment]::SetEnvironmentVariable("Path", $env:Path + ";$path_to_add", "User")
+    }
 }
