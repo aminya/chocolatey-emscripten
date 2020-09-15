@@ -2,7 +2,7 @@
 
 $version=$env:chocolateyPackageVersion
 if (!$version) {
-    $version='2.0.3'
+    $version='latest'
 }
 
 $installDir=$env:LOCALAPPDATA
