@@ -6,7 +6,11 @@ $installDir=$env:LOCALAPPDATA
 
 $toolsDir="$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 if (!$toolsDir) {
-    $toolsDir = "$env:ChocolateyInstall\lib\emscripten\tools"
+    if ($env:ChocolateyInstall) {
+        $toolsDir = "$env:ChocolateyInstall\lib\emscripten\tools"
+    } else {
+        $toolsDir = $PSScriptRoot
+    }
 }
 
 write-host "Uninstalling emscripten will remove $installDir\emsdk. Are you sure you want to proceed?" -ForegroundColor Yellow

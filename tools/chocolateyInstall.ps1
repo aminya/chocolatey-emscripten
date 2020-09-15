@@ -9,7 +9,11 @@ $installDir=$env:LOCALAPPDATA
 
 $toolsDir="$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 if (!$toolsDir) {
-    $toolsDir = "$env:ChocolateyInstall\lib\emscripten\tools"
+    if ($env:ChocolateyInstall) {
+        $toolsDir = "$env:ChocolateyInstall\lib\emscripten\tools"
+    } else {
+        $toolsDir = $PSScriptRoot
+    }
 }
 
 if ($Env:ChocolateyForce) {
