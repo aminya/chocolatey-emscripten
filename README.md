@@ -7,11 +7,14 @@ Install chocolatey from [here](https://chocolatey.org/install) then:
 choco install emscripten
 ```
 
+**Note**: The compiler is installed in "$env:LocalAppData\emsdk".
+
 # Uninstall
 ```ps1
 choco uninstall emscripten
 ```
 
+**Note**: The compiler is removed from "$env:LocalAppData\emsdk".
 
 # Install without chocolatey
 You should have git installed. These scripts all run in PowerShell.
