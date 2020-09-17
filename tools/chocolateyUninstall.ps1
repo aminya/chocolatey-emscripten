@@ -13,16 +13,10 @@ if (!$toolsDir) {
     }
 }
 
-write-host "Uninstalling emscripten will remove $installDir\emsdk. Are you sure you want to proceed?" -ForegroundColor Yellow
-$reply = Read-Host -Prompt "[y/n]"
-if(!$reply) {
-    $reply = "y"
-}
-if ( $reply -match "[yY]" ) {
-    # Remove the repository
-    write-host "Removing $installDir\emsdk" -ForegroundColor Blue
-    if (Test-Path "$installDir\emsdk") { rm -Recurse -Force "$installDir\emsdk" }
+write-host "Uninstalling emscripten will remove $installDir\emsdk." -ForegroundColor Yellow
+# Remove the repository
+write-host "Removing $installDir\emsdk" -ForegroundColor Blue
+if (Test-Path "$installDir\emsdk") { rm -Recurse -Force "$installDir\emsdk" }
 
-    # Remove environment variables
-    & "$toolsDir\remove_envs.ps1"
-}
+# Remove environment variables
+& "$toolsDir\remove_envs.ps1"
