@@ -15,7 +15,7 @@ write-host "Handling possible emsdk's failures to set paths" -ForegroundColor Bl
 
 # Parse emsdk_activate_output
 
-$paths_to_add=($emsdk_activate_output | Select-String "^(?:PATH \+\= )(.*)$" -AllMatches | %{$_.matches} | %{$_.Value}) -replace "PATH \+\= ", ""
+$paths_to_add=($emsdk_activate_output | Select-String "(?:PATH \+\= )(.*)" -AllMatches | %{$_.matches} | %{$_.Value}) -replace "PATH \+\= ", ""
 
 Foreach ($path_to_add in $paths_to_add) {
     write-host "Putting $path_to_add the PATH" -ForegroundColor Blue
