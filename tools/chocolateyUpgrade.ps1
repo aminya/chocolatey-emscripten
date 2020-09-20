@@ -40,14 +40,14 @@ write-host "The current working directory is changed to $installDir\emsdk" -Fore
 
 # Update the tags for emsdk
 git pull
-.\emsdk.bat update-tags
+.\emsdk.ps1 update-tags
 
 # Fetch the latest registry of available tools.
-.\emsdk.bat update
+.\emsdk.ps1 update
 
 # Download and install the $version SDK tools.
 write-host "Installing emsdk $version" -ForegroundColor Blue
-.\emsdk.bat install $version --global
+.\emsdk.ps1 install $version --global
 
 # Remove environment variables
 & "$toolsDir\remove_envs.ps1"

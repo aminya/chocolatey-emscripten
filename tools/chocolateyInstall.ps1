@@ -63,11 +63,11 @@ write-host "The current working directory is changed to $installDir\emsdk" -Fore
 
 # Update the tags for emsdk
 git pull
-.\emsdk.bat update-tags
+.\emsdk.ps1 update-tags
 
 # Download and install the SDK tools.
 write-host "Installing emsdk $version" -ForegroundColor Blue
-.\emsdk.bat install $version --global
+.\emsdk.ps1 install $version --global
 
 # Make the $version SDK "active" for the current user. (writes ~/.emscripten file)
 write-host "Activating emsdk $version" -ForegroundColor Blue
