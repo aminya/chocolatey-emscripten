@@ -1,6 +1,5 @@
 # Put the paths on PATH
 write-host "Handling possible emsdk's failures to set paths" -ForegroundColor Blue
-write-host "Putting emsdk, emscripten, emsdk_node, emsdk_java, and emsdk_python on the PATH" -ForegroundColor Blue
 
 # Manual method
 # does not put the upstream or fastcomp emscripten on the path
@@ -19,6 +18,7 @@ write-host "Putting emsdk, emscripten, emsdk_node, emsdk_java, and emsdk_python 
 $paths_to_add=($emsdk_activate_output | Select-String "^(?:PATH \+\= )(.*)$" -AllMatches | %{$_.matches} | %{$_.Value}) -replace "PATH \+\= ", ""
 
 Foreach ($path_to_add in $paths_to_add) {
+    write-host "Putting $path_to_add the PATH" -ForegroundColor Blue
     try {
         Install-ChocolateyPath -PathToInstall $path_to_add -PathType User
     } catch {

@@ -1,7 +1,5 @@
 # Make the environment variables premenant
-
 write-host "Handling possible emsdk's failures to set environment variables" -ForegroundColor Blue
-write-host "Adding the EMSDK, EMSDK_NODE, JAVA_HOME, EMSDK_PYTHON, and EM_CACHE environment variables" -ForegroundColor Blue
 
 # Manual Method
 # the emsdk script sometimes does not add the variables!
@@ -17,9 +15,12 @@ $envs_names_to_add=($emsdk_activate_output | Select-String "(.*) = (.*)" -AllMat
 
 # loop over each group (e.g if length == 18 -> 1,2; 4,5; ... ;16,17)
 For ($i=1; $i -le ($envs_names_to_add.length-2); $i = $i+3) {
+    $env_name = $envs_names_to_add[$i]
+    $env_value = $envs_names_to_add[$i+1]
+    write-host "Adding $env_name to the permanent environment variables" -ForegroundColor Blue
     try {
-        Install-ChocolateyEnvironmentVariable $envs_names_to_add[$i] $envs_names_to_add[$i+1] -VariableType User
+        Install-ChocolateyEnvironmentVariable $env_name  $env_value -VariableType User
     } catch {
-        [Environment]::SetEnvironmentVariable($envs_names_to_add[$i], $envs_names_to_add[$i+1], "User")
+        [Environment]::SetEnvironmentVariable($env_name , $env_value, "User")
     }
 }
