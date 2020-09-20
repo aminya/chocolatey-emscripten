@@ -20,3 +20,6 @@ if (Test-Path "$installDir\emsdk") { rm -Recurse -Force "$installDir\emsdk" }
 
 # Remove environment variables
 & "$toolsDir\remove_envs.ps1"
+
+# Remove paths
+& "$toolsDir\remove_paths.ps1"
