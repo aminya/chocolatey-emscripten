@@ -1,4 +1,4 @@
-write-host "Removing environment variables" -ForegroundColor Blue
+write-host "Removing the environment variables (e.g. JAVA_HOME, EMSDK, etc.)" -ForegroundColor Blue
 try {
   Uninstall-ChocolateyEnvironmentVariable "EMSDK" -VariableType User
   Uninstall-ChocolateyEnvironmentVariable "EMSDK_NODE" -VariableType User
