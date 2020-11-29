@@ -67,11 +67,11 @@ git pull
 
 # Download and install the SDK tools.
 write-host "Installing emsdk $version" -ForegroundColor Blue
-.\emsdk.ps1 install $version --global
+.\emsdk.ps1 install $version --permanent
 
 # Make the $version SDK "active" for the current user. (writes ~/.emscripten file)
 write-host "Activating emsdk $version" -ForegroundColor Blue
-$emsdk_activate_output=(.\emsdk.ps1 activate $version --global 2>&1)
+$emsdk_activate_output=(.\emsdk.ps1 activate $version --permanent 2>&1)
 
 write-host $emsdk_activate_output -ForegroundColor DarkGray
 
