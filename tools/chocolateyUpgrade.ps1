@@ -47,23 +47,16 @@ git pull
 
 # Download and install the $version SDK tools.
 write-host "Installing emsdk $version" -ForegroundColor Blue
-.\emsdk.ps1 install $version --global
+.\emsdk.ps1 install $version --permanent
 
 # Remove environment variables
 & "$toolsDir\remove_envs.ps1"
 
 # Make the $version SDK "active" for the current user. (writes ~/.emscripten file)
 write-host "Activating emsdk $version" -ForegroundColor Blue
-write-host "emsdk sometimes fails to add the environment variables! Ignore the failure messages about environment variables or import Python Windows extensions. Chocolatey will handle it. :)" -ForegroundColor Yellow
-$emsdk_activate_output=(.\emsdk.ps1 activate $version --global 2>&1)
+$emsdk_activate_output=(.\emsdk.ps1 activate $version --permanent 2>&1)
 
 write-host $emsdk_activate_output -ForegroundColor DarkGray
-
-# Make the environment variables premenant
-& "$toolsDir\add_envs.ps1"
-
-# Put the paths on PATH
-& "$toolsDir\add_paths.ps1"
 
 write-host "The package is successfully upgraded to the $version version in $installDir\emsdk"  -ForegroundColor Green
 
