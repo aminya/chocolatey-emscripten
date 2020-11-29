@@ -3,7 +3,7 @@
 ## Handle version
 if ($env:chocolateyPackageVersion) {
     # in choco
-    $version=$env:chocolateyPackageVersion
+    $version="sdk-fastcomp-$env:chocolateyPackageVersion-64bit"
 }
 # to allow running without choco
 elseif ($env:emsdkVersion) {
