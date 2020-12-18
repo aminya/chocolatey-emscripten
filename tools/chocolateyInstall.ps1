@@ -78,7 +78,7 @@ write-host $emsdk_activate_output -ForegroundColor DarkGray
 write-host "Ignore the above failure messages about environment variables or import Python Windows extensions." -ForegroundColor Yellow
 
 write-host "The installation added the emsdk's bundled Python, Node, and Java to the PATH." -ForegroundColor Blue
-write-host "and it set JAVA_HOME to path of the bundled Java." -ForegroundColor Blue
+write-host "and it set JAVA_HOME to the path of the bundled Java." -ForegroundColor Blue
 write-host "If this conflicts with your other development environments, remove these from PATH." -ForegroundColor Blue
 
 write-host "The package is successfully installed in $installDir\emsdk" -ForegroundColor Green
