@@ -32,7 +32,7 @@ cd chocolatey-emscripten\tools
 
 This installs the `latest` version. If you want to install a certain version first set `emsdkVersion` environment variable and then run install:
 ```ps1
-$emsdkVersion="2.0.21"
+$emsdkVersion="2.0.25"
 .\chocolateyInstall.ps1
 ```
 
@@ -45,7 +45,7 @@ run `chocolateyUpgrade`
 
 This upgrades to the `latest` version. If you want to upgrade to a certain version first set `emsdkVersion` environment variable and then run upgrade:
 ```ps1
-$emsdkVersion="2.0.21"
+$emsdkVersion="2.0.25"
 .\chocolateyUpgrade.ps1
 ```
 
